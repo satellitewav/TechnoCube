@@ -33,13 +33,13 @@
 #counterclockwise_button,
 #down_button,
 #harddrop_button {
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(115, 255, 0);
     border-radius: 50%;
-    border: 1px solid rgb(255, 38, 0);
+    border: 1px solid rgb(0, 0, 0);
 }
 
 .border {
-    box-shadow: 0 5px rgb(105, 31, 31);
+    box-shadow: 0 5px rgb(0, 0, 0);
 }
 
 .pushed {
@@ -60,9 +60,6 @@
     /* background-image: url('../img/music-off.svg'); */
 }
 
-#music_line {
-    /* background-image: url('../img/line.svg'); */
-}
 
 #dark_light_theme_button {
     background-image: url('../img/theme_light_dark_icon_137104.svg');

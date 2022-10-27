@@ -1,7 +1,5 @@
 import Tetromino from '../js/tetromino.js';
 import Position from '../js/position.js';
-import { clearScores, addScore } from '../js/db.js'
-
 // init();
 
 // import botMove from '../js/bot.js';
@@ -24,7 +22,7 @@ export default class Tetris {
     static instanceCounter = 0;
     static MOBILE_HELP_TEXT = "CONTROLS:\n  use screen buttons or swipes\n  - LEFT/RIGHT/DOWN swipe - left/right/down move\n  - UP swipe - rotation\n  - multitouch x3 - pause\n  - multitouch x4 - restart"
     static PC_HELP_TEXT = "CONTROLS:\n  ⬅️ ➡️ ⬇️ or A, D, S - left/right/down move\n  ⬆️ or W - rotation\n  Q, E - counterclockwise and clockwise rotation\n  F1 - help\n  P - pause\n  Enter - restart\n  Space - hard drop\n"
-    static LIST_OF_COLORS = ["rgb(255,127,0)", "rgb(0, 0, 255)", "rgb(0, 255, 0)", "rgb(203, 40, 40)", "rgb(114,188,212)", "rgb(237, 226, 21)", "rgb(161, 13, 143)", "gray"];
+    static LIST_OF_COLORS = ["rgb(0,255,0)", "rgb(0, 255, 0)", "rgb(0, 255, 0)", "rgb(0, 255, 0)", "rgb(0,255,0)", "rgb(0, 255, 0)", "rgb(0, 255, 0)", "gray"];
     static LIST_OF_DARKER_COLORS = ["rgb(120,60,0)", "rgb(0, 0, 120)", "rgb(0, 120, 0)", "rgb(100, 20, 20)", "rgb(57,99,106)", "rgb(115, 112, 10)", "rgb(80, 6, 71)", "gray"];
     static LIST_OF_TETROMINOES = ["L", "J", "S", "Z", "I", "O", "T"];
     static LIST_OF_SCORES = [40, 100, 300, 1200];
@@ -360,7 +358,7 @@ export default class Tetris {
         this.width = width;
         this.height = height;
         let delta = Math.abs(width - height);
-        this.cellSize = width > height ? Math.floor((width - delta - Tetris.PADDING * 6) / Tetris.CELLS_COUNT) : Math.floor((height - delta - Tetris.PADDING * 6) / Tetris.CELLS_COUNT);
+        this.cellSize = width > height ? Math.floor((width - delta - Tetris.PADDING * -6) / Tetris.CELLS_COUNT) : Math.floor((height - delta - Tetris.PADDING * -6) / Tetris.CELLS_COUNT);
 
         // if (this.isTouchableDevice) {
         //     this.glassPos = new Position((this.width - this.cellSize) / 2 - ((this.cellSize * 11 + this.cellSize * Math.floor(Tetris.CELLS_COUNT / 3)) / 2), Tetris.PADDING * 3);
@@ -455,7 +453,7 @@ export default class Tetris {
 
     setGameOver() {
         if (!this.isGameOver) {
-            addScore(this.score, this.lvl, this.line);
+            //addScore(this.score, this.lvl, this.line);
             this.isGameOver = true;
         }
 
@@ -551,7 +549,7 @@ export default class Tetris {
         let paddingX = Math.floor((this.height - Tetris.PADDING * 2) / 4);
         let y = Math.floor(this.height / 2);
         let x = Tetris.PADDING;
-        let w = this.cellSize * 5;
+        let w = this.cellSize * 4;
         let h = w;
 
         if (this.width < this.height) {

@@ -35,16 +35,16 @@ const helpPCText = document.getElementById('pc_help_text');
 const helpMobileText = document.getElementById('mobile_help_text');
 
 
-if ('serviceWorker' in navigator) {
+/*if ('serviceWorker' in navigator) {
     navigator.serviceWorker
         .register('/web_tetris/appCache.js')
         .then(function() { console.log("Service Worker Registered"); });
-}
+} */
 
 window.addEventListener('beforeunload', (event) => {
-    event.preventDefault();
-    cache();
-    event.returnValue = '';
+    //event.preventDefault();
+    //cache();
+    //event.returnValue = '';
 
 });
 
@@ -67,11 +67,13 @@ document.addEventListener('touchmove', handleTouchMove, false);
 document.getElementById('close_help_modal').addEventListener('click', closeHelpModel, false);
 document.getElementById('close_highscore_modal').addEventListener('click', closeHighscoreModal, false);
 
+//document.getElementById('start').addEventListener('click', startGame);;
+
 
 function cache() {
-    localStorage.setItem('tetris', JSON.stringify(tetris));
-    localStorage.setItem('currentTetromino', JSON.stringify(tetris.currentTetromino));
-    localStorage.setItem('nextTetromino', JSON.stringify(tetris.nextTetromino));
+   // localStorage.setItem('tetris', JSON.stringify(tetris));
+    //localStorage.setItem('currentTetromino', JSON.stringify(tetris.currentTetromino));
+    //localStorage.setItem('nextTetromino', JSON.stringify(tetris.nextTetromino));
     // localStorage.clear();
 }
 
@@ -194,6 +196,8 @@ window.addEventListener('load', () => {
     start();
 })
 
+
+
 window.addEventListener('resize', (event) => {
     setSize();
     buttonDownTimerID.forEach(el => {
@@ -278,6 +282,10 @@ function pauseResumeMusic() {
 
 }
 
+//function startGame(){
+//    start();
+//}
+
 function fullScreen() {
     console.log(canvas.requestFullscreen)
     if (canvas.requestFullscreen) {
@@ -326,7 +334,7 @@ function start() {
     tetris.start();
     setInterval(checkMoves, 75);
     loadCashes();
-    document.getElementById('buttons').style.visibility = 'visible';
+    document.getElementById('buttons').style.visibility = 'invisible';
     document.getElementById('labels').style.visibility = 'visible';
     backs.style.visibility = 'visible';
     // backs.style.opacity = 0.85;
