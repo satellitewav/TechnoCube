@@ -5,6 +5,7 @@
 }
 
 input[type=text] {
+    text-align: center;
     width: 70%;
     box-sizing: border-box;
     font-size: 18.5px;
@@ -15,6 +16,7 @@ input[type=text] {
   }
   
   input[type=number]{
+        text-align: center;
        background-color: rgb(216, 210, 210);
   }
 
