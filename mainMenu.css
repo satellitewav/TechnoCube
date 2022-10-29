@@ -67,7 +67,7 @@ input[type=text] {
     position: relative;
     background: rgb(216, 210, 210);
     width: 15rem;
-    height: 12rem;
+    height: 11rem;
     text-align: center;
     padding: 0 0 0;
     margin: 1rem 1rem 1rem;
@@ -88,7 +88,7 @@ th , tr {
     text-align:center;
     padding: 5px;
     border: 0px solid black;
-    padding-bottom: 1em;
+    padding-bottom: 0.5em;
  }
 
  .fa {
@@ -106,4 +106,10 @@ th , tr {
 .fa-ticket {
     background: #125688;
     color: white;
+}
+
+#sottotitolo{
+    margin-top: -2vh; 
+    font-size: 13px;
+    font-weight: 300;
 }
