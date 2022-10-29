@@ -22,7 +22,7 @@ export default class Tetris {
     static instanceCounter = 0;
     static MOBILE_HELP_TEXT = "CONTROLS:\n  use screen buttons or swipes\n  - LEFT/RIGHT/DOWN swipe - left/right/down move\n  - UP swipe - rotation\n  - multitouch x3 - pause\n  - multitouch x4 - restart"
     static PC_HELP_TEXT = "CONTROLS:\n  ⬅️ ➡️ ⬇️ or A, D, S - left/right/down move\n  ⬆️ or W - rotation\n  Q, E - counterclockwise and clockwise rotation\n  F1 - help\n  P - pause\n  Enter - restart\n  Space - hard drop\n"
-    static LIST_OF_COLORS = ["rgb(0,255,0)", "rgb(0, 255, 0)", "rgb(0, 255, 0)", "rgb(0, 255, 0)", "rgb(0,255,0)", "rgb(0, 255, 0)", "rgb(0, 255, 0)", "gray"];
+    static LIST_OF_COLORS = ["rgb(255,127,0)", "rgb(0, 0, 255)", "rgb(0, 255, 0)", "rgb(203, 40, 40)", "rgb(114,188,212)", "rgb(237, 226, 21)", "rgb(161, 13, 143)", "gray"];
     static LIST_OF_DARKER_COLORS = ["rgb(120,60,0)", "rgb(0, 0, 120)", "rgb(0, 120, 0)", "rgb(100, 20, 20)", "rgb(57,99,106)", "rgb(115, 112, 10)", "rgb(80, 6, 71)", "gray"];
     static LIST_OF_TETROMINOES = ["L", "J", "S", "Z", "I", "O", "T"];
     static LIST_OF_SCORES = [40, 100, 300, 1200];
@@ -377,7 +377,7 @@ export default class Tetris {
         this.borderWidth = Math.floor(this.cellSize / 7);
         this.fontSize = this.cellSize;
         this.body.style.fontSize = `${this.canvasCords2Document(this.fontSize)}px`;
-        this.ctx.font = `${this.fontSize}px Minecrafter Alt`;
+        this.ctx.font = `${this.fontSize}px Open Sans`;
         this.next.style.width = `${this.canvasCords2Document(this.cellSize * Math.floor(Tetris.CELLS_COUNT / 3))}px`;
         this.next.style.height = `${this.canvasCords2Document(this.cellSize * Math.floor(Tetris.CELLS_COUNT / 3))}px`;
         this.next.style.left = `${this.canvasCords2Document(this.glassPos.x + this.cellSize * 11)}px`;
@@ -416,12 +416,12 @@ export default class Tetris {
         this.drawShadow();
         if (this.isGameOver) {
             // document.location.reload();
-            this.drawTextOnGlass("game over");
+            this.drawTextOnGlass("GAME OVER");
             this.stopTimer();
             return;
 
         } else if (this.isPaused) {
-            this.drawTextOnGlass("paused");
+            this.drawTextOnGlass("PAUSA");
             return;
         }
 
@@ -434,6 +434,7 @@ export default class Tetris {
             Math.floor(this.glassPos.y + Tetris.CELLS_COUNT * this.cellSize / 2),
         )
         this.ctx.fillStyle = 'red';
+        this.ctx.font = `600 ${this.fontSize}px Open Sans`;
         this.ctx.fillText(text, centerGlass.x, centerGlass.y);
     }
 
@@ -455,6 +456,9 @@ export default class Tetris {
         if (!this.isGameOver) {
             //addScore(this.score, this.lvl, this.line);
             this.isGameOver = true;
+            setTimeout(() => {
+                location.reload();
+              }, 3000);
         }
 
     }
@@ -548,13 +552,13 @@ export default class Tetris {
     setButtons() {
         let paddingX = Math.floor((this.height - Tetris.PADDING * 2) / 4);
         let y = Math.floor(this.height / 2);
-        let x = Tetris.PADDING;
-        let w = this.cellSize * 4;
+        let x = Tetris.PADDING*2;
+        let w = this.cellSize * 3.5;
         let h = w;
 
         if (this.width < this.height) {
             paddingX = Math.floor((this.width - Tetris.PADDING * 2) / 4);
-            y = this.height - (this.height - (this.glassPos.y + Tetris.CELLS_COUNT * this.cellSize)) / 2 - h;
+            y = this.height - (this.height - (this.glassPos.y + Tetris.CELLS_COUNT * this.cellSize)) / 1.5 - h;
             // w = this.cellSize * 4;
             // h = w;
         }

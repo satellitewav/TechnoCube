@@ -54,18 +54,15 @@ window.mobileCheck = () => {
     return check;
 };
 
-document.getElementById('help_button').addEventListener('click', showHelp, false);
-document.getElementById('fullscreen_button').addEventListener('click', fullScreen);
-document.getElementById('music_button').addEventListener('click', pauseResumeMusic);
-document.getElementById('music_button').addEventListener('mouseover', mouseOverMusicLine);
-document.getElementById('music_button').addEventListener('mouseout', mouseOutMusicLine);
-document.getElementById('dark_light_theme_button').addEventListener('click', switchTheme, false);
+
 document.addEventListener('keydown', handleKeyDown, true);
 document.addEventListener('keyup', handleKeyUP, false);
 document.addEventListener('touchstart', handleTouchStart, false);
 document.addEventListener('touchmove', handleTouchMove, false);
 document.getElementById('close_help_modal').addEventListener('click', closeHelpModel, false);
 document.getElementById('close_highscore_modal').addEventListener('click', closeHighscoreModal, false);
+document.getElementById('submit_btn').addEventListener('click', startBtnClick, false);
+
 
 //document.getElementById('start').addEventListener('click', startGame);;
 
@@ -193,7 +190,9 @@ canvas.onselectstart = () => { return false; }
 
 window.addEventListener('load', () => {
     console.log('All assets are loaded');
-    start();
+    setLightTheme();
+    // QUAINIZIA 
+    //start();
 })
 
 
@@ -212,23 +211,12 @@ window.addEventListener('resize', (event) => {
     ]
 }, true);
 
-window.onfocus = () => {
-    tetris.resumeBackgroundAudio();
-    tetris.changePausedStatus();
-    console.log('focused');
-};
 
-window.onblur = () => {
-    tetris.stopBackgroundAudio();
-    tetris.changePausedStatus();
-    console.log('blur');
-    cache();
-};
 
 function switchTheme() {
 
     if (isLightTheme) {
-        setDarkTheme();
+        setLightTheme();
     } else {
         setLightTheme();
     }
@@ -334,6 +322,7 @@ function start() {
     tetris.start();
     setInterval(checkMoves, 75);
     loadCashes();
+    document.getElementById('mainMenu').style.display = 'none';
     document.getElementById('buttons').style.visibility = 'invisible';
     document.getElementById('labels').style.visibility = 'visible';
     backs.style.visibility = 'visible';
@@ -438,6 +427,10 @@ function closeHelpModel() {
 function closeHighscoreModal() {
     highscoreModal.close();
     tetris.changePausedStatus();
+}
+
+function startBtnClick(){
+    start();
 }
 
 
@@ -554,29 +547,11 @@ function handleKeyUP(event) {
 
 
 function getTouches(evt) {
-    return evt.touches || // browser API
-        evt.originalEvent.touches; // jQuery
+y
 }
 
 function handleTouchStart(event) {
-    const firstTouch = getTouches(event)[0];
-    if (event.touches.length == 3) {
-        // document.location.reload();
-        tetris.changePausedStatus();
 
-    }
-    if (event.touches.length == 4) {
-        tetris.restart();
-    }
-
-    xDown = firstTouch.clientX;
-    yDown = firstTouch.clientY;
-
-    if (tetris.isAnimation)
-        return;
-
-
-    event.preventDefault();
 };
 
 function clearButtonsIntervals(container, keys = false) {
@@ -594,33 +569,5 @@ function clearButtonsIntervals(container, keys = false) {
 
 
 function handleTouchMove(event) {
-    if (!xDown || !yDown) {
-        return;
-    }
 
-
-    var xUp = event.touches[0].clientX;
-    var yUp = event.touches[0].clientY;
-
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-
-    if (Math.abs(xDiff) > Math.abs(yDiff)) { /*most significant*/
-        if (xDiff > 0) {
-            tetris.move(-1, 0);
-
-        } else {
-            tetris.move(1, 0);
-        }
-    } else {
-        if (yDiff > 0) {
-            tetris.rotate(true);
-        } else {
-            tetris.move(0, 1);
-        }
-    }
-
-    /* reset values */
-    xDown = null;
-    yDown = null;
 };

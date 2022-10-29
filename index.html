@@ -5,21 +5,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script async src='https://www.googletagmanager.com/gtag/js?id=UA-142539004-1'></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-142539004-1');
+    </script>
     <link rel="shortcut icon" type="image/x-icon" href="./img/icon.png" />
     <title>SatelliteGames</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/stelle.css">
     <link rel="stylesheet" href="./css/buttons.css">
     <link rel="stylesheet" href="./css/labels.css">
     <link rel="stylesheet" href="./css/backs.css">
     <link rel="stylesheet" href="./css/modal.css">
+    <link rel="stylesheet" href="mainMenu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module" src="./js/main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/idb@7/build/umd.js"></script>
 </head>
 
 <body>
+
     <container id="_body">
-        
+
         <container id="backs">
             <!-- <img src="./img/glass.svg" id="glass">
             <img src="./img/next.svg" id="next"> -->
@@ -53,12 +70,50 @@
 
         <div id="bg" class="darkTheme"></div>
 
+
         <!-- <button id='start' class='start'>Gioca</button> -->
-        <canvas id="game_field"> </canvas>
+        <div id="mainMenu" class="mainMenu">
+            <div id='stars'></div>
+            <p style="font-size:10px">BETA 0.5</p>
+            <!--    margin-top: 3vh;   -->
+            <img src="logo.png" style="width:100%; margin-top: -2vh; margin-bottom: 1vh; z-index: 10;" alt="TeknoCube">
+            <h2>Username Instagram:</h2>
+            <input id=name name="name" type="text" size="90"> <br><br>
+            <button id='submit_btn' class='submit_btn'>GIOCA</button><br><br>
+            <div class="top5"><h2>Top 5</h2></div>
+            <div class="top3">
+                <div class="two item">
+                    <table class="tabella">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Punteggio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable"></tbody>
+                    </table>
+                </div>
+            </div>
+            <a style="font-size: 25px;" href="https://linktr.ee/satellite.wav" class="fa fa-ticket"></a> 
+        </div>
+        
+
+        <canvas id="game_field"> 
+  
+        </canvas>
 <!--         <video autoplay loop muted playsinline id="myVideo">
             <source src="" type="video/mp4" poster=".\img\bg.jpg">
           </video> -->
+          <div id='stars'></div>
+          <div id='stars2'></div>
+          <div id='stars3'></div>
     </container>
+
+
+    <!--  MENU PRINCIPALE  -->
+
+    <!--  MENU PRINCIPALE  -->
+
     <dialog class="settings_modasl" id="settings_modal">
         <p>SETTINGS</p>
     </dialog>
@@ -134,6 +189,21 @@
         <hr>
         <button id="close_help_modal">ok</button>
     </dialog>
+
+    <div class="night">
+        <div class="shooting_star"></div>
+        <div class="shooting_star"></div>
+
+      </div>
+      <div class="night2">
+        <div class="shooting_starE"></div>
+        <div class="shooting_starE"></div>
+      </div>
+     
+
+
+    
+      <script src="firebase.js"></script>
 </body>
 
 </html>

@@ -1,8 +1,44 @@
-@import url('https://fonts.cdnfonts.com/css/minecrafter-alt');
-@font-face {
-    font-family: "Minecrafter Alt";
-    src: url('https://fonts.cdnfonts.com/css/minecrafter-alt');
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+html,
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    /* filter: opacity(1); */
+    /* position: absolute;
+    object-fit: cover;
+    /* background-size: 400px; */
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* display: flex; */
+    touch-action: none;
+    /* object-fit: cover; */
+    /* background-attachment: fixed; */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #game_field {
     -webkit-touch-callout: none;
@@ -23,27 +59,10 @@
     height: 100%;
 }
 
-html,
-body {
-    font-family: "Minecrafter Alt";
-    /* filter: opacity(1); */
-    /* position: absolute;
-    object-fit: cover;
-    /* background-size: 400px; */
-    margin: 0;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    /* display: flex; */
-    touch-action: none;
-    /* object-fit: cover; */
-    /* background-attachment: fixed; */
-}
+
 
 #bg {
-    background-image: url('../img/pattern-2.svg');
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     background-repeat: repeat;
     position: fixed;
     width: 100%;
