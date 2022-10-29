@@ -432,8 +432,44 @@ function closeHighscoreModal() {
 }
 
 function startBtnClick(){
+    var text=document.getElementById('name');
+    if( document.getElementById("name").value != ''){
+        // Nome inserito, controllo necessario
+        controlloUtente();
+    }else{
+        // Nessun nome, partita locale
+        var highScore = 0;
+        window.localStorage.setItem('highScore', highScore);
+        console.log("Nessun nome, record generico di  ", highScore);
+    }
     start();
 }
+
+async function controlloUtente(){
+    var text=document.getElementById('name');
+    var migliore = "0";
+    var highScore = "0";
+    const query = await db.collection("players").where("name", "==", text.value).get();
+  
+    if (!query.empty) {
+        const snapshot = query.docs[0];
+        const data = snapshot.data();
+        let migliore  = `${data.score}`;
+        var highScore = migliore;
+        console.log("Vecchio utente, assegno punteggio ", highScore);
+        window.localStorage.setItem('highScore', highScore);
+        console.log(highScore);
+        console.log(data);
+    } else {
+        var highScore = 0;
+        window.localStorage.setItem('highScore', highScore);
+        console.log("Nuovo utente, assegno punteggio ", highScore);
+    }  
+}
+
+
+
+
 
 
 

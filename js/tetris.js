@@ -454,14 +454,22 @@ export default class Tetris {
 
     setGameOver() {
         if (!this.isGameOver) {
+            var y = this.score;
+            console.log(y);
+            window.localStorage.setItem('punti', y);
             //addScore(this.score, this.lvl, this.line);
+            assegnaPunteggio();
             this.isGameOver = true;
             setTimeout(() => {
                 location.reload();
-              }, 3000);
+              }, 1500);
         }
 
     }
+
+
+
+    
 
     copyMatrix(m) {
         let copy = [];
@@ -696,8 +704,19 @@ export default class Tetris {
         this.ctx.fillStyle = 'red';
         this.ctx.fillText(`${this.score}`, centerX, y + h + this.cellSize * 2);
         this.ctx.fillText(`${this.line}`, centerX, y + h + this.cellSize * 5);
-        this.ctx.fillText(`${this.lvl}`, centerX, y + h + this.cellSize * 8);
-
+        var text=document.getElementById('name');
+        this.nomeInsta = document.getElementById('level_label');
+        if(text.value == ""){
+            this.nomeInsta.innerHTML = "Partita locale";
+        }else{
+            this.nomeInsta.innerHTML = text.value;
+        }
+        var record = window.localStorage.getItem('highScore');
+        if(this.score > record){
+            this.ctx.fillText(`${this.score}`, centerX, y + h + this.cellSize * 8);
+        }else{
+            this.ctx.fillText(`${record}`, centerX, y + h + this.cellSize * 8);
+        }
     }
 
     drawCurrentTetromino() {
@@ -786,3 +805,49 @@ export default class Tetris {
         return Math.floor(Math.random() * max);
     }
 }
+
+async function assegnaPunteggio() {
+    // Make the initial query
+    var hiscore = window.localStorage.getItem('punti');
+    var text=document.getElementById('name');
+    var x = parseInt(hiscore);
+  
+    const query = await db.collection("players").where("name", "==", text.value).get();
+  
+    if (!query.empty) {
+        const snapshot = query.docs[0];
+        const data = snapshot.data();
+        let migliore  = `${data.score}`;
+        console.log("Nome", text.value, "punteggio", hiscore, "cloud", migliore, "x", x);
+        if (x > migliore){
+            console.log("Miglior punteggio superato");
+            db.collection("players").where("name", "==", text.value)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                    db.collection("players").doc(doc.id).update({
+                        score: x,
+                    })
+                    console.log("Dati precedenti aggiornati");
+                });
+            })
+        }else{
+            console.log("Miglior punteggio non superato");
+        }
+    } else {
+        if( document.getElementById("name").value != ''){
+            db.collection("players").add({
+                name: text.value,
+                score: x,
+            })
+            .then((docRef) => {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch((error) => {
+            console.error("Error adding document: ", error);
+            });
+        } 
+        console.log("Nuovo utente, assegno nome", text.value, "e punteggio ", hiscore);
+    }
+  }
