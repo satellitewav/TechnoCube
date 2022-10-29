@@ -323,6 +323,8 @@ function start() {
     setInterval(checkMoves, 75);
     loadCashes();
     document.getElementById('mainMenu').style.display = 'none';
+    document.getElementById('night').style.visibility = 'visible';
+    document.getElementById('night2').style.visibility = 'visible';
     document.getElementById('buttons').style.visibility = 'invisible';
     document.getElementById('labels').style.visibility = 'visible';
     backs.style.visibility = 'visible';

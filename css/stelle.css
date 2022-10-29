@@ -4,7 +4,7 @@
     height: 50%;
     transform: rotateZ(45deg);
     z-index: 0;
-    display: none;
+    visibility: hidden;
   }
 
   .night2 {
@@ -13,9 +13,8 @@
     height: 50%;
     transform: rotateZ(45deg);
     z-index: 0;
-    display: none;
+    visibility: hidden;
   }
-  
   
   .shooting_star {
     position: absolute;
