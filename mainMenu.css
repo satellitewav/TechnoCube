@@ -81,11 +81,11 @@ table{
     margin-left:auto;
     margin-right:auto;
     width:170px;
+    border-spacing: 1em 0.5em;
 }
 
 th , tr {
     text-align:center;
-    padding: 15px;
     border: 0px solid black;
     padding-bottom: 0.5em;
  }
