@@ -358,7 +358,7 @@ export default class Tetris {
         this.width = width;
         this.height = height;
         let delta = Math.abs(width - height);
-        this.cellSize = width > height ? Math.floor((width - delta - Tetris.PADDING * -6) / Tetris.CELLS_COUNT) : Math.floor((height - delta - Tetris.PADDING * -6) / Tetris.CELLS_COUNT);
+        this.cellSize = width > height ? Math.floor((width - delta - Tetris.PADDING * -4) / Tetris.CELLS_COUNT) : Math.floor((height - delta - Tetris.PADDING * -4) / Tetris.CELLS_COUNT);
 
         // if (this.isTouchableDevice) {
         //     this.glassPos = new Position((this.width - this.cellSize) / 2 - ((this.cellSize * 11 + this.cellSize * Math.floor(Tetris.CELLS_COUNT / 3)) / 2), Tetris.PADDING * 3);
