@@ -55,8 +55,7 @@ window.mobileCheck = () => {
 };
 
 
-document.addEventListener('keydown', handleKeyDown, true);
-document.addEventListener('keyup', handleKeyUP, false);
+
 document.addEventListener('touchstart', handleTouchStart, false);
 document.addEventListener('touchmove', handleTouchMove, false);
 document.getElementById('close_help_modal').addEventListener('click', closeHelpModel, false);
@@ -476,115 +475,10 @@ async function controlloUtente(){
 
 
 
-function handleKeyDown(event) {
-    let key = event.key;
-    event.preventDefault();
-    // if (settingsModal.open) {
-    if (helpModal.open) {
-        if (key == "Enter") {
-            closeHelpModel();
-        }
-        return
-    }
-
-    if (highscoreModal.open) {
-        if (key == "Enter") {
-            closeHighscoreModal();
-        }
-        return
-    }
 
 
-    let code = event.code;
-
-    if (key == "DOWN" || key == "ArrowDown" || code == "KeyS") {
-        // if (isFired[0])
-        //     return;
-        // tetris.move(0, 1);
-        // keyDownTimerID[0].push(setInterval(() => {
-        //     tetris.move(0, 1);
-        // }, delayTime));
-        isFired[0] = true;
-
-    }
-    if (key == "Up" || key == "ArrowUp" || code == "KeyW" || code == "KeyE") {
-        tetris.rotate(true);
-    }
-    if (code == "KeyQ") {
-        tetris.rotate(false);
-    }
-    if (key == "Left" || key == "ArrowLeft" || code == "KeyA") {
-        // if (isFired[1])
-        //     return;
-        // tetris.move(-1, 0);
-        // keyDownTimerID[1].push(setInterval(() => {
-        //     tetris.move(-1, 0);
-        // }, delayTime));
-        isFired[1] = true;
-
-    }
-    if (key == "Right" || key == "ArrowRight" || code == "KeyD") {
-        // if (isFired[2])
-        //     return;
-        // tetris.move(1, 0);
-        // keyDownTimerID[2].push(setInterval(() => {
-        //     tetris.move(1, 0);
-        // }, delayTime));
-        isFired[2] = true;
-
-    }
-    if (key == "Enter") {
-        tetris.restart();
-        setSize();
-    }
-
-    if (key == "p" || code == "KeyP") {
-        tetris.changePausedStatus();
-    }
-    if (key == "F1" || code == "F1") {
-        showHelp();
-
-    }
-    if (event.code === 'Space') {
-        tetris.hardDrop();
-    }
-
-    // if (code == "KeyB") {
-    //     bot.changeActive();
-    //     setSize();
-    // }
-}
 
 
-function handleKeyUP(event) {
-
-    let key = event.key;
-    let code = event.code;
-
-    if (key == "Right" || key == "ArrowRight" || code == "KeyD") {
-        isFired[2] = false;
-        // keyDownTimerID[2].forEach(element => {
-        //     clearInterval(element);
-        // });
-        // keyDownTimerID[2] = [];
-    }
-
-    if (key == "Left" || key == "ArrowLeft" || code == "KeyA") {
-        isFired[1] = false;
-        // keyDownTimerID[1].forEach(element => {
-        //     clearInterval(element);
-        // });
-        // keyDownTimerID[1] = [];
-    }
-
-    if (key == "DOWN" || key == "ArrowDown" || code == "KeyS") {
-        isFired[0] = false;
-        // keyDownTimerID[0].forEach(element => {
-        //     clearInterval(element);
-        // });
-        // keyDownTimerID[0] = [];
-    }
-}
 
 
 function getTouches(evt) {
