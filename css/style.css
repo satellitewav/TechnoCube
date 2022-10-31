@@ -1,10 +1,38 @@
+@font-face {
+    font-family: 'RBNo3.1 Book';
+    src: url('RBNo31-Book.woff2') format('woff2'),
+        url('RBNo31-Book.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+@font-face {
+    font-family: 'RBNo3.1';
+    src: url('RBNo31-Light.woff2') format('woff2'),
+        url('RBNo31-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'RBNo3.1 Ultra';
+    src: url('RBNo31-Ultra.woff2') format('woff2'),
+        url('RBNo31-Ultra.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+  
 
 html,
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
+    font-family: 'RBNo3.1', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
     /* filter: opacity(1); */
     /* position: absolute;
     object-fit: cover;
@@ -20,25 +48,6 @@ body {
     /* object-fit: cover; */
     /* background-attachment: fixed; */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #game_field {
     -webkit-touch-callout: none;
@@ -62,7 +71,11 @@ body {
 
 
 #bg {
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    background: rgb(7,25,12);
+    background: -moz-linear-gradient(90deg, rgba(7,25,12,1) 45%, rgba(4,32,8,1) 74%, rgba(1,25,4,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(7,25,12,1) 45%, rgba(4,32,8,1) 74%, rgba(1,25,4,1) 100%);
+    background: linear-gradient(90deg, rgba(7,25,12,1) 45%, rgba(4,32,8,1) 74%, rgba(1,25,4,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#07190c",endColorstr="#011904",GradientType=1);
     background-repeat: repeat;
     position: fixed;
     width: 100%;
