@@ -330,8 +330,12 @@ function start() {
     document.getElementById('labels').style.visibility = 'visible';
     backs.style.visibility = 'visible';
     // backs.style.opacity = 0.85;
-    document.getElementById('yourAudioTag').play();
-
+    var audio = new Audio('soundtrack.wav');
+    audio.play();
+    audio.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+    }, false);
 
     // bot.start();
 }
@@ -339,6 +343,9 @@ function start() {
 // function moveLeft() {
 //     tetris.move(-1, 0);
 // }
+
+
+
 
 function loadCashes() {
     let isLightThemeCasched = JSON.parse(localStorage.getItem('isLightTheme'));

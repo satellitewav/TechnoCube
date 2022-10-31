@@ -566,7 +566,7 @@ export default class Tetris {
 
         if (this.width < this.height) {
             paddingX = Math.floor((this.width - Tetris.PADDING * 2) / 4);
-            y = this.height - (this.height - (this.glassPos.y + Tetris.CELLS_COUNT * this.cellSize)) / 2 - h;
+            y = this.height - (this.height - (this.glassPos.y + Tetris.CELLS_COUNT * this.cellSize)) / 1.5 - h;
             // w = this.cellSize * 4;
             // h = w;
         }
