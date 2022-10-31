@@ -325,10 +325,13 @@ function start() {
     document.getElementById('mainMenu').style.display = 'none';
     document.getElementById('night').style.visibility = 'visible';
     document.getElementById('night2').style.visibility = 'visible';
+    document.getElementById('quadrati').style.visibility = 'visible';
     document.getElementById('buttons').style.visibility = 'invisible';
     document.getElementById('labels').style.visibility = 'visible';
     backs.style.visibility = 'visible';
     // backs.style.opacity = 0.85;
+    document.getElementById('yourAudioTag').play();
+
 
     // bot.start();
 }
