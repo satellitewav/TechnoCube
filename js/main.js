@@ -472,7 +472,7 @@ async function controlloUtente(){
     window.localStorage.setItem('nome', text.value);
     var migliore = "0";
     var highScore = "0";
-    const query = await db.collection("players").where("name", "==", text.value).get();
+    const query = await db.collection("players2").where("name", "==", text.value).get();
   
     if (!query.empty) {
         const snapshot = query.docs[0];

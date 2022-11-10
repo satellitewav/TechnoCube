@@ -813,7 +813,7 @@ async function assegnaPunteggio() {
     var text=document.getElementById('name');
     var x = parseInt(hiscore);
   
-    const query = await db.collection("players").where("name", "==", text.value).get();
+    const query = await db.collection("players2").where("name", "==", text.value).get();
   
     if (!query.empty) {
         const snapshot = query.docs[0];
@@ -823,12 +823,12 @@ async function assegnaPunteggio() {
         if (x > migliore){
             console.log("Miglior punteggio superato");
             window.localStorage.setItem('highScore', x);
-            db.collection("players").where("name", "==", text.value)
+            db.collection("players2").where("name", "==", text.value)
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
-                    db.collection("players").doc(doc.id).update({
+                    db.collection("players2").doc(doc.id).update({
                         score: x,
                     })
                     console.log("Dati precedenti aggiornati");
@@ -839,7 +839,7 @@ async function assegnaPunteggio() {
         }
     } else {
         if( document.getElementById("name").value != ''){
-            db.collection("players").add({
+            db.collection("players2").add({
                 name: text.value,
                 score: x,
             })

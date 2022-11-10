@@ -36,6 +36,10 @@
             window.localStorage.removeItem('nome');
             location.reload();
         }
+
+        function removeSpaces(string) {
+ return string.split(' ').join('');
+}
     </script>
 </head>
 
@@ -89,7 +93,7 @@
             <div id="nuovo" style="visibility: hidden; max-height: 0;">
                 <h2>Username Instagram:</h2>
                 <p id="sottotitolo">Il gioco salva ogni Game Over</p>
-                <input id=name name="name" type="text" autocomplete="off" size="90"> <br><br>
+                <input id=name name="name" type="text" autocomplete="off" autocapitalize="off" onblur="this.value=removeSpaces(this.value);" size="90"> <br><br>
             </div>
 
             <div id="esistente" style="visibility: hidden; max-height: 0;">
