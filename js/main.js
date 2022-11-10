@@ -188,6 +188,22 @@ $('#clockwise_button').on('touchstart', function(e) {
 canvas.onselectstart = () => { return false; }
 
 window.addEventListener('load', () => {
+
+    
+    var nome = window.localStorage.getItem('nome');
+    console.log(nome);
+
+    if(nome != null){
+        var nometornato = document.getElementById('backuser');
+        nometornato.innerHTML = nome;
+        document.getElementById('name').value=nome;
+        document.getElementById('esistente').style.visibility = 'visible';
+        document.getElementById('esistente').style.maxHeight = '10000px';
+    }else{
+        document.getElementById('nuovo').style.visibility = 'visible';
+        document.getElementById('nuovo').style.maxHeight = '10000px';
+    }
+
     console.log('All assets are loaded');
     setLightTheme();
     // QUAINIZIA 
@@ -442,6 +458,7 @@ function startBtnClick(){
         // Nessun nome, partita locale
         var highScore = 0;
         window.localStorage.setItem('highScore', highScore);
+        window.localStorage.removeItem('nome');
         console.log("Nessun nome, record generico di  ", highScore);
     }
     start();
@@ -449,6 +466,7 @@ function startBtnClick(){
 
 async function controlloUtente(){
     var text=document.getElementById('name');
+    window.localStorage.setItem('nome', text.value);
     var migliore = "0";
     var highScore = "0";
     const query = await db.collection("players").where("name", "==", text.value).get();

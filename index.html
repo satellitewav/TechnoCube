@@ -31,6 +31,12 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/idb@7/build/umd.js"></script>
+    <script>
+        function cambiaNome(){
+            window.localStorage.removeItem('nome');
+            location.reload();
+        }
+    </script>
 </head>
 
 <body>
@@ -80,9 +86,18 @@
             
             <!--    margin-top: 3vh;   -->
             <img src="logo.png" style="width:100%; margin-top: 2vh; margin-bottom: 1vh; z-index: 10;" alt="TeknoCube">
-            <h2>Username Instagram:</h2>
-            <p id="sottotitolo">Il gioco salva ogni Game Over</p>
-            <input id=name name="name" type="text" size="90"> <br><br>
+            <div id="nuovo" style="visibility: hidden; max-height: 0;">
+                <h2>Username Instagram:</h2>
+                <p id="sottotitolo">Il gioco salva ogni Game Over</p>
+                <input id=name name="name" type="text" autocomplete="off" size="90"> <br><br>
+            </div>
+
+            <div id="esistente" style="visibility: hidden; max-height: 0;">
+                <div class="bentornato"><h2>Ciao,</h2><p style="visibility: hidden;">s</p><h2 id=backuser style="color: green;"></h2><h2>.</h2></div>
+                <div style="margin-top: -3vh;"><a href=# onclick='cambiaNome()' style="color:green;">cambia</a></div> <br>
+                <p id="sottotitolo" style="margin-top: 0vh; margin-bottom: 0vh;">Il gioco salva ogni Game Over</p> 
+            </div> <br><br>
+
             <button id='submit_btn' class='submit_btn' style="z-index:2;">GIOCA</button><br><br>
             <div class="top5"><h2>Top 5</h2></div>
             <div class="top3">
