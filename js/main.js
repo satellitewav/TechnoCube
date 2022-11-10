@@ -191,11 +191,15 @@ window.addEventListener('load', () => {
 
     
     var nome = window.localStorage.getItem('nome');
-    console.log(nome);
+    var toprecord = window.localStorage.getItem('highScore');
+    console.log("Dati salvati in memoria => " + nome + ":" + toprecord);
+
 
     if(nome != null){
         var nometornato = document.getElementById('backuser');
         nometornato.innerHTML = nome;
+        var recordtornato = document.getElementById('record');
+        recordtornato.innerHTML = toprecord;
         document.getElementById('name').value=nome;
         document.getElementById('esistente').style.visibility = 'visible';
         document.getElementById('esistente').style.maxHeight = '10000px';
@@ -204,7 +208,7 @@ window.addEventListener('load', () => {
         document.getElementById('nuovo').style.maxHeight = '10000px';
     }
 
-    console.log('All assets are loaded');
+    console.log('Tutti gli asset sono stati caricati correttamente.');
     setLightTheme();
     // QUAINIZIA 
     //start();
@@ -369,7 +373,6 @@ function loadCashes() {
 
     tetris.score = cachedTetris.score;
     tetris.line = cachedTetris.line;
-    tetris.lvl = cachedTetris.lvl;
     tetris.boardMatrix = cachedTetris.boardMatrix;
     tetris.matrixOfColors = cachedTetris.matrixOfColors;
     tetris.currentSpeed = cachedTetris.currentSpeed;

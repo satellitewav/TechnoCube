@@ -37,6 +37,7 @@ db.collection("players").orderBy("score", "desc").limit(5)
     console.log(`Error: ${err}`)
 }); 
 
+
 function display(){
           document.getElementById('table').style.display = "block";
 }

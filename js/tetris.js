@@ -516,11 +516,12 @@ export default class Tetris {
         if (counter) {
             this.score += Tetris.LIST_OF_SCORES[counter - 1] * this.lvl;
             this.line += counter;
+            this.currentSpeed -= this.currentSpeed > Tetris.STEP_SPEED ? Tetris.STEP_SPEED : 0;
+                console.log("Velocità caduta pezzi:", this.currentSpeed, "ms");
             this.lvl = Math.floor(this.line / 10) + 1;
             if (this.lvl > prevLVL) {
-                // Tetris.LVL_UP_AUDIO.play();
                 this.currentSpeed -= this.currentSpeed > Tetris.STEP_SPEED ? Tetris.STEP_SPEED : 0;
-                console.log("current moved delay:", this.currentSpeed, "ms");
+                console.log("Velocità caduta pezzi:", this.currentSpeed, "ms");
             }
             this.animation(copyBoardMatrix, copyColorsMatrix);
         }
@@ -821,6 +822,7 @@ async function assegnaPunteggio() {
         console.log("Nome", text.value, "punteggio", hiscore, "cloud", migliore, "x", x);
         if (x > migliore){
             console.log("Miglior punteggio superato");
+            window.localStorage.setItem('highScore', x);
             db.collection("players").where("name", "==", text.value)
             .get()
             .then((querySnapshot) => {
@@ -848,6 +850,7 @@ async function assegnaPunteggio() {
             console.error("Error adding document: ", error);
             });
         } 
+        window.localStorage.setItem('highScore', x);
         console.log("Nuovo utente, assegno nome", text.value, "e punteggio ", hiscore);
     }
   }
