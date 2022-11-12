@@ -79,6 +79,9 @@ export default class Tetris {
     next = document.getElementById('next');
     body = document.getElementById('_body');
     isDisableSound = true;
+    s=29.5; 
+    s2=89; 
+    s3=125;
 
 
     constructor(canvas, width, height, isOpponent = false) {
@@ -516,8 +519,30 @@ export default class Tetris {
         if (counter) {
             this.score += Tetris.LIST_OF_SCORES[counter - 1] * this.lvl;
             this.line += counter;
-            this.currentSpeed -= this.currentSpeed > Tetris.STEP_SPEED ? Tetris.STEP_SPEED : 0;
-                console.log("Velocità caduta pezzi:", this.currentSpeed, "ms");
+            switch(this.line){
+                case 1: this.aumentaDiff(); break;
+                case 2: this.aumentaDiff(); break;
+                case 5: this.aumentaDiff(); break;
+                case 10: this.aumentaDiff(); break;
+                case 12: this.aumentaDiff(); break;
+                case 15: this.aumentaDiff(); break;
+                case 20: this.aumentaDiff(); break;
+                case 22: this.aumentaDiff(); break;
+                case 25: this.aumentaDiff(); break;
+                case 30: this.aumentaDiff(); break;
+                case 35: this.aumentaDiff(); break;
+                case 40: this.aumentaDiff(); break;
+                case 45: this.aumentaDiff(); break;
+                case 50: this.aumentaDiff(); break;
+                case 55: this.aumentaDiff(); break;
+                case 65: this.aumentaDiff(); break;
+                case 75: this.aumentaDiff(); break;
+                case 85: this.aumentaDiff(); break;
+                case 95: this.aumentaDiff(); break;
+                case 105: this.aumentaDiff(); break;
+            }
+            
+            
             this.lvl = Math.floor(this.line / 10) + 1;
             if (this.lvl > prevLVL) {
                 this.currentSpeed -= this.currentSpeed > Tetris.STEP_SPEED ? Tetris.STEP_SPEED : 0;
@@ -530,7 +555,7 @@ export default class Tetris {
     animation(copyBoardMatrix, copyColorsMatrix) {
         this.isAnimation = true;
 
-        console.log("animation");
+        console.log("Linea completata");
         // Tetris.CLEARED_LINES_AUDIO.play();
         this.changeTimerStatus();
         let id = setInterval(() => {
@@ -557,6 +582,17 @@ export default class Tetris {
         }, Tetris.AnimationTime);
     }
 
+    aumentaDiff(){
+
+        this.currentSpeed -= this.currentSpeed > Tetris.STEP_SPEED ? Tetris.STEP_SPEED : 0;
+        console.log("Velocità caduta pezzi:", this.currentSpeed, "ms");
+        document.querySelector(':root').style.setProperty('--star', this.s + 's');
+        document.querySelector(':root').style.setProperty('--star2', this.s2 + 's');
+        document.querySelector(':root').style.setProperty('--star3', this.s3 + 's');
+        this.s -= 1;
+        this.s2 -= 4;
+        this.s3 -= 6;
+    }
 
     setButtons() {
         let paddingX = Math.floor((this.height - Tetris.PADDING * 2) / 4);
