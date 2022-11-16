@@ -519,15 +519,22 @@ export default class Tetris {
         if (counter) {
             this.score += Tetris.LIST_OF_SCORES[counter - 1] * this.lvl;
             this.line += counter;
-            switch(this.line){
+
+        var nometroll = window.localStorage.getItem('nome');
+        if( nometroll == "Gino"){
+            for (let index = 0; index < 16; index++) {
+                this.aumentaDiff();
+                }
+        }
+
+
+          switch(this.line){
                 case 1: this.aumentaDiff(); break;
                 case 2: this.aumentaDiff(); break;
                 case 5: this.aumentaDiff(); break;
                 case 10: this.aumentaDiff(); break;
-                case 12: this.aumentaDiff(); break;
                 case 15: this.aumentaDiff(); break;
                 case 20: this.aumentaDiff(); break;
-                case 22: this.aumentaDiff(); break;
                 case 25: this.aumentaDiff(); break;
                 case 30: this.aumentaDiff(); break;
                 case 35: this.aumentaDiff(); break;
@@ -536,7 +543,7 @@ export default class Tetris {
                 case 50: this.aumentaDiff(); break;
                 case 55: this.aumentaDiff(); break;
                 case 65: this.aumentaDiff(); break;
-                case 75: this.aumentaDiff(); break;
+                case 70: this.aumentaDiff(); break;
                 case 85: this.aumentaDiff(); break;
                 case 95: this.aumentaDiff(); break;
                 case 105: this.aumentaDiff(); break;
@@ -589,9 +596,14 @@ export default class Tetris {
         document.querySelector(':root').style.setProperty('--star', this.s + 's');
         document.querySelector(':root').style.setProperty('--star2', this.s2 + 's');
         document.querySelector(':root').style.setProperty('--star3', this.s3 + 's');
-        this.s -= 1;
-        this.s2 -= 4;
-        this.s3 -= 6;
+
+        if(this.s > 4)
+            this.s -= 2;
+        if(this.s2 > 16)
+            this.s2 -= 6;
+        if(this.s3 > 11)
+            this.s3 -= 10;
+        
     }
 
     setButtons() {
