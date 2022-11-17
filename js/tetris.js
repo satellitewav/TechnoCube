@@ -865,8 +865,6 @@ async function assegnaPunteggio() {
     var seconds = Math.round(elapsed_ms / 1000);
     var minutes = Math.round(seconds / 60);
 
-
-
     var hiscore = window.localStorage.getItem('punti');
     var text=document.getElementById('name');
     var x = parseInt(hiscore);
