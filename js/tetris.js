@@ -524,9 +524,8 @@ export default class Tetris {
 
         var nometroll = window.localStorage.getItem('nome');
         if( nometroll == "Gino"){
-            for (let index = 0; index < 16; index++) {
-                this.aumentaDiff();
-                }
+            alert("Sai cosa fare. Saprò cosa fai..");
+            window.location.href = "https://thegameawards.com/nominees/game-of-the-year";
         }
 
 
