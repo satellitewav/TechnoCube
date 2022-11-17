@@ -4,6 +4,8 @@ import Position from '../js/position.js';
 
 // import botMove from '../js/bot.js';
 
+var start_time = new Date();
+
 CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
     if (w < 2 * r) r = Math.floor(w / 2);
     if (h < 2 * r) r = Math.floor(h / 2);
@@ -857,16 +859,29 @@ export default class Tetris {
 
 async function assegnaPunteggio() {
     // Make the initial query
+    var end_time = new Date();
+
+    var elapsed_ms = end_time - start_time;
+    var seconds = Math.round(elapsed_ms / 1000);
+    var minutes = Math.round(seconds / 60);
+
+
+
     var hiscore = window.localStorage.getItem('punti');
     var text=document.getElementById('name');
     var x = parseInt(hiscore);
   
     const query = await db.collection("players2").where("name", "==", text.value).get();
-  
+    
+
     if (!query.empty) {
         const snapshot = query.docs[0];
         const data = snapshot.data();
         let migliore  = `${data.score}`;
+        var oldtempo = `${data.tempo}`;
+        var newtime = +oldtempo + +minutes;
+        var z = parseInt(newtime);
+
         console.log("Nome", text.value, "punteggio", hiscore, "cloud", migliore, "x", x);
         if (x > migliore){
             console.log("Miglior punteggio superato");
@@ -878,11 +893,25 @@ async function assegnaPunteggio() {
                 // doc.data() is never undefined for query doc snapshots
                     db.collection("players2").doc(doc.id).update({
                         score: x,
+                        tempo: z,
                     })
+                    console.log(oldtempo + " " + minutes);
                     console.log("Dati precedenti aggiornati");
                 });
             })
         }else{
+            db.collection("players2").where("name", "==", text.value)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                    db.collection("players2").doc(doc.id).update({
+                        tempo: z,
+                    })
+                    console.log(oldtempo + " " + minutes);
+                    console.log("Dati precedenti aggiornati");
+                });
+            })
             console.log("Miglior punteggio non superato");
         }
     } else {
@@ -890,6 +919,7 @@ async function assegnaPunteggio() {
             db.collection("players2").add({
                 name: text.value,
                 score: x,
+                tempo: minutes,
             })
             .then((docRef) => {
                 console.log("Document written with ID: ", docRef.id);
@@ -899,6 +929,7 @@ async function assegnaPunteggio() {
             });
         } 
         window.localStorage.setItem('highScore', x);
+        console.log(oldtempo + " " + minutes);
         console.log("Nuovo utente, assegno nome", text.value, "e punteggio ", hiscore);
     }
   }
