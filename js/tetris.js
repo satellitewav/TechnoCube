@@ -84,6 +84,7 @@ export default class Tetris {
     s=29.5; 
     s2=89; 
     s3=125;
+    aumenti = 0;
 
 
     constructor(canvas, width, height, isOpponent = false) {
@@ -523,9 +524,13 @@ export default class Tetris {
             this.line += counter;
 
         var nometroll = window.localStorage.getItem('nome');
-        if( nometroll == "Gino"){
-            alert("Sai cosa fare. Saprò cosa fai..");
-            window.location.href = "https://thegameawards.com/nominees/game-of-the-year";
+        if( nometroll == "Gino" && this.line == 1){
+            alert("AHAHAHAHAH CREDEVI TI AVREI LASCIATO IN PACE?");
+            alert(".. va bene, ti lascio in pace");
+        }
+
+        if( nometroll == "Gino" && this.line == 50){
+            alert("TI VEDO");
         }
 
 
@@ -552,10 +557,7 @@ export default class Tetris {
             
             
             this.lvl = Math.floor(this.line / 10) + 1;
-            if (this.lvl > prevLVL) {
-                this.currentSpeed -= this.currentSpeed > Tetris.STEP_SPEED ? Tetris.STEP_SPEED : 0;
-                console.log("Velocità caduta pezzi:", this.currentSpeed, "ms");
-            }
+
             this.animation(copyBoardMatrix, copyColorsMatrix);
         }
     }
@@ -592,8 +594,12 @@ export default class Tetris {
 
     aumentaDiff(){
 
-        this.currentSpeed -= this.currentSpeed > Tetris.STEP_SPEED ? Tetris.STEP_SPEED : 0;
-        console.log("Velocità caduta pezzi:", this.currentSpeed, "ms");
+        if(this.aumenti < 10){
+            this.aumenti = this.aumenti + 1;
+            this.currentSpeed -= this.currentSpeed > Tetris.STEP_SPEED ? Tetris.STEP_SPEED : 0;
+            console.log(this.aumenti);
+            console.log("Velocità caduta pezzi aumentata a:", this.currentSpeed, "ms");
+        }
         document.querySelector(':root').style.setProperty('--star', this.s + 's');
         document.querySelector(':root').style.setProperty('--star2', this.s2 + 's');
         document.querySelector(':root').style.setProperty('--star3', this.s3 + 's');
