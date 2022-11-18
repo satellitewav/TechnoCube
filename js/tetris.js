@@ -524,17 +524,20 @@ export default class Tetris {
             this.line += counter;
 
         var nometroll = window.localStorage.getItem('nome');
-        if( nometroll == "Gino" && this.line == 1){
+        if( nometroll == "Gino" && this.aumenti == 1){
             alert("AHAHAHAHAH CREDEVI TI AVREI LASCIATO IN PACE?");
             alert(".. va bene, ti lascio in pace");
         }
 
-        if( nometroll == "Gino" && this.line == 50){
+        if( nometroll == "Gino" && this.aumenti == 19){
             alert("TI VEDO");
         }
 
+        this.aumenti = this.aumenti + 1;
+        console.log(this.aumenti);
 
-          switch(this.line){
+
+          switch(this.aumenti){
                 case 1: this.aumentaDiff(); break;
                 case 2: this.aumentaDiff(); break;
                 case 5: this.aumentaDiff(); break;
@@ -594,19 +597,15 @@ export default class Tetris {
 
     aumentaDiff(){
 
-        if(this.aumenti < 10){
-            this.aumenti = this.aumenti + 1;
-            this.currentSpeed -= this.currentSpeed > Tetris.STEP_SPEED ? Tetris.STEP_SPEED : 0;
-            console.log(this.aumenti);
-            console.log("Velocità caduta pezzi aumentata a:", this.currentSpeed, "ms");
-        }
+        this.currentSpeed -= this.currentSpeed > Tetris.STEP_SPEED ? Tetris.STEP_SPEED : 0;
+        console.log("Velocità caduta pezzi aumentata a:", this.currentSpeed, "ms");
         document.querySelector(':root').style.setProperty('--star', this.s + 's');
         document.querySelector(':root').style.setProperty('--star2', this.s2 + 's');
         document.querySelector(':root').style.setProperty('--star3', this.s3 + 's');
 
         if(this.s > 4)
             this.s -= 2;
-        if(this.s2 > 16)
+        if(this.s2 > 12)
             this.s2 -= 6;
         if(this.s3 > 11)
             this.s3 -= 10;
