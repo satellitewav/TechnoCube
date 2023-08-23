@@ -33,11 +33,7 @@
 #counterclockwise_button,
 #down_button,
 #harddrop_button {
-<<<<<<< HEAD
     background-color: #d80303;
-=======
-    background-color: #FFD700;
->>>>>>> 3655bf9baef26a8816246e7997e16a7e3000f90d
     border-radius: 50%;
     border: 1px solid rgb(0, 0, 0);
 }
