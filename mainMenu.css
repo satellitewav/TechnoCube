@@ -11,7 +11,7 @@ input[type=text] {
     border: none;
     color:rgb(255, 255, 255);
     background-color: rgba(216, 210, 210, 0);
-    border-bottom: 2px solid rgb(216, 210, 210);
+    border-bottom: 2px solid rgb(0, 0, 0);
   }
   
   input[type=number]{
@@ -21,7 +21,7 @@ input[type=text] {
 
   #submit_btn, .level {
     align-items: center;
-    background-color: #fff;
+    background-color: rgb(216, 210, 210);
     border-radius: 12px;
     box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
     box-sizing: border-box;
@@ -57,7 +57,7 @@ input[type=text] {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    color: #4B4168;
+    color: #000000;
 }
 
 .top3 .item {
@@ -107,12 +107,12 @@ th , tr {
 }
 
 .fa-ticket {
-    background: #125688;
-    color: white;
+    background: #d80303;
+    color: #000000;
 }
 
 #sottotitolo{
     margin-top: -2vh; 
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 300;
 }

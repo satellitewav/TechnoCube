@@ -873,7 +873,7 @@ async function assegnaPunteggio() {
     var text=document.getElementById('name');
     var x = parseInt(hiscore);
   
-    const query = await db.collection("players2").where("name", "==", text.value).get();
+    const query = await db.collection("players3").where("name", "==", text.value).get();
     
 
     if (!query.empty) {
@@ -888,12 +888,12 @@ async function assegnaPunteggio() {
         if (x > migliore){
             console.log("Miglior punteggio superato");
             window.localStorage.setItem('highScore', x);
-            db.collection("players2").where("name", "==", text.value)
+            db.collection("players3").where("name", "==", text.value)
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
-                    db.collection("players2").doc(doc.id).update({
+                    db.collection("players3").doc(doc.id).update({
                         score: x,
                         tempo: z,
                     })
@@ -902,12 +902,12 @@ async function assegnaPunteggio() {
                 });
             })
         }else{
-            db.collection("players2").where("name", "==", text.value)
+            db.collection("players3").where("name", "==", text.value)
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
-                    db.collection("players2").doc(doc.id).update({
+                    db.collection("players3").doc(doc.id).update({
                         tempo: z,
                     })
                     console.log(oldtempo + " " + minutes);
@@ -918,7 +918,7 @@ async function assegnaPunteggio() {
         }
     } else {
         if( document.getElementById("name").value != ''){
-            db.collection("players2").add({
+            db.collection("players3").add({
                 name: text.value,
                 score: x,
                 tempo: minutes,
