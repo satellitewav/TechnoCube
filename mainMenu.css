@@ -107,8 +107,13 @@ th , tr {
 }
 
 .fa-ticket {
+<<<<<<< HEAD
     background: #d80303;
     color: #000000;
+=======
+    background: #FFD700;
+    color: #646464;
+>>>>>>> 3655bf9baef26a8816246e7997e16a7e3000f90d
 }
 
 #sottotitolo{
